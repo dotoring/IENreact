@@ -21,10 +21,6 @@ const ContentArea = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-	.img {
-		width: 1000px;
-		height: 1000px;
-	}
 `
 
 const ArticleButtons = styled.div`
