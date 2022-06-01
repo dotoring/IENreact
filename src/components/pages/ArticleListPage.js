@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Header from '../common/Header';
 import styled from 'styled-components';
 import palette from '../../style/palette';
@@ -33,6 +32,7 @@ const ArticleBox = styled.div`
   }
   height: 80px;
   display: flex;
+	justify-content: space-between;
 `
 
 const Thumbnail = styled.img`
@@ -46,10 +46,17 @@ const Title = styled.h2`
   margin-left: 10px;
 `
 
-const ArticleListPage = () => {
+const ArticleListPage = ({article}) => {
   function articleClick(e) {
     window.location.href="/article"
   }
+
+  const { economy } = article;
+
+  console.log(economy[0]);
+
+  // var atitle = economy[0].title
+  // var thumb = economy[0].img
 
   return (
     <div>
@@ -57,29 +64,43 @@ const ArticleListPage = () => {
       <ArticleListArea>
         <ArticleBox onClick={articleClick}>
 					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목@기사제목@기사제목@기사제목@기사제목</Title>
+          <Title>기사제목1</Title>
           <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목2</Title>
+          <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목3</Title>
+          <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목4</Title>
+          <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목5</Title>
+          <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목6</Title>
+          <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목7</Title>
+          <button>플레이</button>
         </ArticleBox>
-        <ArticleBox>
-          끼요오옷
+        <ArticleBox onClick={articleClick}>
+					<Thumbnail src={testImg} alt='test' />
+          <Title>기사제목8</Title>
+          <button>플레이</button>
         </ArticleBox>
       </ArticleListArea>
     </div>
