@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Responsive from './Responsive';
 
@@ -34,7 +35,9 @@ const Header = () => {
     <div>
       <HeaderBlock>
         <Wrapper>
-          <div className="logo">귀쏙신</div>
+          <Link to="/">
+            <div className='logo'>귀쏙신</div>
+          </Link>
           <div className='right'>
             <button>로그인 없음</button>
           </div>
