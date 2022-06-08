@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../common/Header';
 import styled from 'styled-components';
 import palette from '../../style/palette';
@@ -36,7 +36,8 @@ const ArticleBox = styled.div`
 `
 
 const Thumbnail = styled.img`
-  width: auto;
+  width: 93px;
+  /* width: auto; */
   height: 100%;
   object-fit: contain;
 `
@@ -47,24 +48,33 @@ const Title = styled.h2`
 `
 
 const ArticleListPage = ({article}) => {
+  const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState('');
+  const [thumbnail, setThumbnail] = useState('')
+
   function articleClick(e) {
     window.location.href="/article"
   }
 
   const { economy } = article;
 
-  console.log(economy[0]);
 
-  // var atitle = economy[0].title
-  // var thumb = economy[0].img
+  useEffect(() => {
+    if(economy.length > 0) {
+      setTitle(economy[0].title)
+      setThumbnail(economy[0].img)
+      setLoading(false);
+    }
+  }, [economy])
 
+  if (loading) return <div>Loading...</div>
   return (
     <div>
       <Header />
       <ArticleListArea>
         <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목1</Title>
+					<Thumbnail src={thumbnail} alt='test' />
+          <Title>{title}</Title>
           <button>플레이</button>
         </ArticleBox>
         <ArticleBox onClick={articleClick}>
