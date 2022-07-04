@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../common/Header';
 import styled from 'styled-components';
 import palette from '../../style/palette';
-import testImg from '../../img/당근.png';
-
 
 const ArticleListArea = styled.div`
   margin: 2%;
@@ -11,7 +10,7 @@ const ArticleListArea = styled.div`
   flex-wrap: wrap;
 `
 
-const ArticleBox = styled.div`
+const ArticleLink = styled(Link)`
   list-style: none;
   margin: 0.5%;
   background-color: ${palette.gray[0]};
@@ -49,20 +48,12 @@ const Title = styled.h2`
 
 const ArticleListPage = ({article}) => {
   const [loading, setLoading] = useState(true);
-  const [title, setTitle] = useState('');
-  const [thumbnail, setThumbnail] = useState('')
-
-  function articleClick(e) {
-    window.location.href="/article"
-  }
 
   const { economy } = article;
 
 
   useEffect(() => {
     if(economy.length > 0) {
-      setTitle(economy[0].title)
-      setThumbnail(economy[0].img)
       setLoading(false);
     }
   }, [economy])
@@ -72,49 +63,22 @@ const ArticleListPage = ({article}) => {
     <div>
       <Header />
       <ArticleListArea>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={thumbnail} alt='test' />
-          <Title>{title}</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목2</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목3</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목4</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목5</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목6</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목7</Title>
-          <button>플레이</button>
-        </ArticleBox>
-        <ArticleBox onClick={articleClick}>
-					<Thumbnail src={testImg} alt='test' />
-          <Title>기사제목8</Title>
-          <button>플레이</button>
-        </ArticleBox>
+        {economy.map(a => (
+          <Article article={a} key={a._id.$oid}></Article>
+        ))}
       </ArticleListArea>
     </div>
   );
 };
+
+function Article(props) {
+  return(
+    <ArticleLink to={`/article/${props.article._id.$oid}`}>
+      <Thumbnail src={props.article.img} alt='img' />
+      <Title>{props.article.title}</Title>
+      <button>플레이</button>
+    </ArticleLink>
+    )
+}
 
 export default ArticleListPage;

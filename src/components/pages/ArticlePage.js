@@ -1,7 +1,8 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../common/Header';
 import styled from 'styled-components';
-import testImg from '../../img/당근.png';
+import { useStore } from '../common/store';
 
 const ArticleArea = styled.div`
 	background-color: whitesmoke;
@@ -30,17 +31,23 @@ const ArticleButtons = styled.div`
 `
 
 const ArticlePage = () => {
+	const {id} = useParams();
+	const {articles} = useStore();
+	const {economy} = articles;
+	let findArticle = economy.find((article) => {
+		return article._id.$oid === id
+	});
 	return (
 		<div>
 			<Header />
 			<ArticleArea>
 				<TitleArea>
-					<h1>[취재파일] 충격과 공포를 넘어... '코로나 바이러스'를 생각한다.</h1>
+					<h1>{findArticle.title}</h1>
 					<button>플레이</button>
 				</TitleArea>
 				<ContentArea>
-					<img src={testImg} alt='test' />
-					<p>@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@@기사내용입니다.@</p>
+					<img src={findArticle.img} alt='articleImg' />
+					<p>{findArticle.contents}</p>
 				</ContentArea>
 			</ArticleArea>
 			<ArticleButtons>

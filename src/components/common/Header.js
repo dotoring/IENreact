@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Responsive from './Responsive';
+import logo from '../../img/IENlogo2.png'
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -36,7 +37,9 @@ const Header = () => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/">
-            <div className='logo'>귀쏙신</div>
+            <div className='logo'>
+              <img className='logoImg' src={logo} alt='logo' />
+            </div>
           </Link>
           <div className='right'>
             <button>로그인 없음</button>
