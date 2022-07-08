@@ -41,9 +41,9 @@ const Header = () => {
               <img className='logoImg' src={logo} alt='logo' />
             </div>
           </Link>
-          <div className='right'>
+          {/* <div className='right'>
             <button>로그인 없음</button>
-          </div>
+          </div> */}
         </Wrapper>
       </HeaderBlock>
       <Spacer />

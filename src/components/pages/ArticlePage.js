@@ -31,12 +31,54 @@ const ArticleButtons = styled.div`
 `
 
 const ArticlePage = () => {
-	const {id} = useParams();
+	const {type, id} = useParams();
 	const {articles} = useStore();
-	const {economy} = articles;
-	let findArticle = economy.find((article) => {
-		return article._id.$oid === id
-	});
+	const {economy, global, culture, society, sports, entertain, politic, IT} = articles;
+	let findArticle
+	switch (type) {
+		case '0':
+			findArticle = economy.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '1':
+			findArticle = global.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '2':
+			findArticle = culture.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '3':
+			findArticle = society.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '4':
+			findArticle = sports.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '5':
+			findArticle = entertain.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '6':
+			findArticle = politic.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		case '7':
+			findArticle = IT.find((article) => {
+				return article._id.$oid === id
+			});
+			break;
+		default:
+	}
+
 	return (
 		<div>
 			<Header />

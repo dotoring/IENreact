@@ -49,7 +49,7 @@ const Title = styled.h2`
 const ArticleListPage = ({article}) => {
   const [loading, setLoading] = useState(true);
 
-  const { economy } = article;
+  const { economy, global, culture, society, sports, entertain, politic, IT } = article;
 
 
   useEffect(() => {
@@ -64,7 +64,42 @@ const ArticleListPage = ({article}) => {
       <Header />
       <ArticleListArea>
         {economy.map(a => (
-          <Article article={a} key={a._id.$oid}></Article>
+          <Article articles={a} key={a._id.$oid} type='0'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {global.map(a => (
+          <Article articles={a} key={a._id.$oid} type='1'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {culture.map(a => (
+          <Article articles={a} key={a._id.$oid} type='2'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {society.map(a => (
+          <Article articles={a} key={a._id.$oid} type='3'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {sports.map(a => (
+          <Article articles={a} key={a._id.$oid} type='4'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {entertain.map(a => (
+          <Article articles={a} key={a._id.$oid} type='5'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {politic.map(a => (
+          <Article articles={a} key={a._id.$oid} type='6'></Article>
+        ))}
+      </ArticleListArea>
+      <ArticleListArea>
+        {IT.map(a => (
+          <Article articles={a} key={a._id.$oid} type='7'></Article>
         ))}
       </ArticleListArea>
     </div>
@@ -73,9 +108,9 @@ const ArticleListPage = ({article}) => {
 
 function Article(props) {
   return(
-    <ArticleLink to={`/article/${props.article._id.$oid}`}>
-      <Thumbnail src={props.article.img} alt='img' />
-      <Title>{props.article.title}</Title>
+    <ArticleLink to={`/article/${props.type}/${props.articles._id.$oid}`}>
+      <Thumbnail src={props.articles.img} alt='img' />
+      <Title>{props.articles.title}</Title>
       <button>플레이</button>
     </ArticleLink>
     )
