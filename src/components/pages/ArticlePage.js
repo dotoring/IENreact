@@ -22,6 +22,10 @@ const ContentArea = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
+	p {
+		padding: 10px;
+		font-size: 14pt;
+	}
 `
 
 const ArticleButtons = styled.div`
@@ -33,7 +37,7 @@ const ArticleButtons = styled.div`
 const ArticlePage = () => {
 	const {type, id} = useParams();
 	const {articles} = useStore();
-	const {economy, global, culture, society, sports, entertain, politic, IT} = articles;
+	const {economy, culture, society, sports, entertain, politic, IT} = articles;
 	let findArticle
 	switch (type) {
 		case '0':
@@ -42,36 +46,31 @@ const ArticlePage = () => {
 			});
 			break;
 		case '1':
-			findArticle = global.find((article) => {
-				return article._id.$oid === id
-			});
-			break;
-		case '2':
 			findArticle = culture.find((article) => {
 				return article._id.$oid === id
 			});
 			break;
-		case '3':
+		case '2':
 			findArticle = society.find((article) => {
 				return article._id.$oid === id
 			});
 			break;
-		case '4':
+		case '3':
 			findArticle = sports.find((article) => {
 				return article._id.$oid === id
 			});
 			break;
-		case '5':
+		case '4':
 			findArticle = entertain.find((article) => {
 				return article._id.$oid === id
 			});
 			break;
-		case '6':
+		case '5':
 			findArticle = politic.find((article) => {
 				return article._id.$oid === id
 			});
 			break;
-		case '7':
+		case '6':
 			findArticle = IT.find((article) => {
 				return article._id.$oid === id
 			});

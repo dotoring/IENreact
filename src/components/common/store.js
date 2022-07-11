@@ -5,7 +5,6 @@ export const useStore = create((set) => ({
 
 	articles: {
 			economy:[],
-			global:[],
 			culture:[],
 			society:[],
 			sports:[],
@@ -15,45 +14,47 @@ export const useStore = create((set) => ({
 	},
 
 	getArticles: async() => {
-		const response = await axios.get('http://localhost:4000/articles');
-		console.log(response.data);
+		const ecoResponse = await axios.get('http://localhost:8080/economy');
+		const culResponse = await axios.get('http://localhost:8080/culture');
+		const socResponse = await axios.get('http://localhost:8080/society');
+		const spoResponse = await axios.get('http://localhost:8080/sports');
+		const entResponse = await axios.get('http://localhost:8080/entertain');
+		const polResponse = await axios.get('http://localhost:8080/politics');
+		const itResponse = await axios.get('http://localhost:8080/it');
+
 		let it = [];
 		let eco = [];
-		let glo = [];
 		let cul = [];
 		let soc = [];
 		let spo = [];
 		let ent = [];
 		let pol = [];
-		for (let x of response.data.IT) {
-			it.push(x);
-		}
-		for (let x of response.data.economy) {
+
+		for (let x of ecoResponse.data) {
 			eco.push(x);
 		}
-		for (let x of response.data.global) {
-			glo.push(x);
-		}
-		for (let x of response.data.culture) {
+		for (let x of culResponse.data) {
 			cul.push(x);
 		}
-		for (let x of response.data.society) {
+		for (let x of socResponse.data) {
 			soc.push(x);
 		}
-		for (let x of response.data.sports) {
+		for (let x of spoResponse.data) {
 			spo.push(x);
 		}
-		for (let x of response.data.entertain) {
+		for (let x of entResponse.data) {
 			ent.push(x);
 		}
-		for (let x of response.data.politics) {
+		for (let x of polResponse.data) {
 			pol.push(x);
+		}
+		for (let x of itResponse.data) {
+			it.push(x);
 		}
 		set({
 			articles: {
 				IT: it,
 				economy: eco,
-				global: glo,
 				culture: cul,
 				society: soc,
 				sports: spo,
